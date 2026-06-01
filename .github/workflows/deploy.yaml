@@ -62,5 +62,7 @@ jobs:
 
       - name: Check deployment
         run: |
-          kubectl rollout status deployment/frontend
-          kubectl rollout status deployment/backend
+          kubectl rollout status frontend-deployment
+          kubectl rollout status backend-deployment
+          kubectl get pods
+          kubectl get service 
