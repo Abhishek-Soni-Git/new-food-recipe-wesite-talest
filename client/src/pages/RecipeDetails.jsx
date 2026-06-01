@@ -9,7 +9,7 @@ export const RecipeDetails = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/recipes/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/recipes/${id}`);
         setRecipe(response.data);
         console.log(response.data);
       } catch (err) {

@@ -1,20 +1,18 @@
-// FollowButton.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const FollowButton = ({ userId, targetUserId ,isFollowing}) => {
+const API = import.meta.env.VITE_BACKEND_URL;
+
+const FollowButton = ({ userId, targetUserId, isFollowing }) => {
   const [following, setFollowing] = useState(false);
 
   useEffect(() => {
-    console.log("follow1" + isFollowing)
-    setFollowing(isFollowing)
-    console.log("follow2" + following)
-  }, [])
-  
+    setFollowing(isFollowing);
+  }, []);
 
   const handleFollow = async () => {
     try {
-      await axios.post(`http://localhost:3001/auth/follow/${targetUserId}`,{id:userId});
+      await axios.post(`${API}/auth/follow/${targetUserId}`, { id: userId });
       setFollowing(true);
     } catch (error) {
       console.error('Error following user', error);
@@ -23,7 +21,7 @@ const FollowButton = ({ userId, targetUserId ,isFollowing}) => {
 
   const handleUnfollow = async () => {
     try {
-      await axios.post(`http://localhost:3001/auth/unfollow/${targetUserId}`,{id:userId});
+      await axios.post(`${API}/auth/unfollow/${targetUserId}`, { id: userId });
       setFollowing(false);
     } catch (error) {
       console.error('Error unfollowing user', error);

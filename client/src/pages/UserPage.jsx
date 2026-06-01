@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
 const UserPage = () => {
   const [cookies] = useCookies(["token"]);
   const [user, setUser] = useState(null);
@@ -9,7 +11,7 @@ const UserPage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/user/profile", {
+        const response = await axios.get(`${API}/user/profile`, {
           headers: { Authorization: `Bearer ${cookies.token}` }
         });
         setUser(response.data);
@@ -17,7 +19,6 @@ const UserPage = () => {
         console.error(err);
       }
     };
-
     fetchProfile();
   }, [cookies.token]);
 
@@ -26,7 +27,7 @@ const UserPage = () => {
       <h1>User Profile</h1>
       {user && (
         <div>
-          <img src={`http://localhost:3001/${user.profileImage}`} alt={user.name} width="100" />
+          <img src={`${API}/${user.profileImage}`} alt={user.name} width="100" />
           <p>{user.name}</p>
         </div>
       )}

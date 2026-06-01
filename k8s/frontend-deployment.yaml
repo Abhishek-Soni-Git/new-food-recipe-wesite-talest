@@ -1,0 +1,33 @@
+# k8s/frontend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: testingss.azurecr.io/frontend:latest  # ← Apna image naam do
+          ports:
+            - containerPort: 80
+---
+# k8s/frontend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer            # Bahar se accessible

@@ -1,0 +1,15 @@
+# k8s/mongo-pvc.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: mongo-pvc
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 1Gi
