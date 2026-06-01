@@ -22,3 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+secrets.yaml
+*-secret.yaml
+*-secrets.yaml
+
+# Helm production values
+values-prod.yaml
+values-production.yaml
+
+# Kubeconfig
+kubeconfig
+.kube/
+
+.env
+.env.*
+*.env

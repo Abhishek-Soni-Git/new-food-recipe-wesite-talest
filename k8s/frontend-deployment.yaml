@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: testingss.azurecr.io/frontend:latest  # ← Apna image naam do
+          image: secretss.azurecr.io/frontend:latest  # ← Apna image naam do
           ports:
             - containerPort: 80
 ---
